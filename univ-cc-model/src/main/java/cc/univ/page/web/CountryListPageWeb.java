@@ -1,12 +1,15 @@
 package cc.univ.page.web;
 
 import cc.univ.model.Country;
+import cc.univ.model.web.CountryFactoryWeb;
 import cc.univ.page.CountryListPage;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByAll;
+
+import java.util.List;
 
 public class CountryListPageWeb implements CountryListPage {
     private static final String TAG_NAME_COUNTRY_LIST = Constants.TAG_NAME_SELECT;
@@ -17,9 +20,14 @@ public class CountryListPageWeb implements CountryListPage {
 
     @NotNull
     private final WebElement pageElement;
+    @NotNull
+    private final CountryFactoryWeb countryFactoryWeb;
 
-    public CountryListPageWeb(@NotNull WebElement pageElement) {
+    public CountryListPageWeb(
+            @NotNull WebElement pageElement,
+            @NotNull CountryFactoryWeb countryFactoryWeb) {
         this.pageElement = pageElement;
+        this.countryFactoryWeb = countryFactoryWeb;
     }
 
     public void selectCountry(@NotNull Country country) {
@@ -35,5 +43,10 @@ public class CountryListPageWeb implements CountryListPage {
                 By.className(CLASS_NAME_SEARCH_BUTTON),
                 By.tagName(TAG_NAME_SEARCH_BUTTON)))
                 .click();
+    }
+
+    @NotNull
+    public List<Country> collectCountries() {
+        return countryFactoryWeb.findList(pageElement);
     }
 }

@@ -5,6 +5,7 @@ public class Constants {
     public static final String ATTRIBUTE_INNER_HTML = "innerHTML";
     public static final String ATTRIBUTE_HREF = "href";
 
+    public static final String TAG_NAME_HTML = "html";
     public static final String TAG_NAME_SELECT = "select";
     public static final String TAG_NAME_OPTION = "option";
     public static final String TAG_NAME_ANCHOR = "a";
