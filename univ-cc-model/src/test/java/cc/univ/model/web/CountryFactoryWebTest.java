@@ -64,7 +64,7 @@ public class CountryFactoryWebTest {
     public void testGotCountriesFromPageWorld() throws Exception {
         URL resource = getClass().getResource("page_world.html");
         driver.get("file://" + resource.getPath());
-        List<Country> countries = countryFactoryWeb.findList(driver);
+        List<Country> countries = countryFactoryWeb.findList(driver.findElement(By.tagName("html")));
 
         assertThat(countries).hasSize(205);
         assertThat(countries.get(2).getCode()).isEqualTo("dz");

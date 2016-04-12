@@ -5,6 +5,7 @@ import cc.univ.model.University;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -32,7 +33,9 @@ public class UniversityFactoryWebLiveTest {
     public void testGotUniversitiesFromPageChina1() throws Exception {
         driver.get("http://univ.cc/search.php?dom=cn&key=&start=1");
         Country country = mock(Country.class);
-        List<University> universities = universityFactoryWeb.findList(country, driver);
+        List<University> universities = universityFactoryWeb.findList(
+                country,
+                driver.findElement(By.tagName("html")));
 
         assertThat(universities).hasSize(50);
         assertThat(universities.get(49).getName()).isEqualTo("China Agricultural University");

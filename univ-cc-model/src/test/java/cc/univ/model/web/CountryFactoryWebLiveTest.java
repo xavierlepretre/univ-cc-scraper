@@ -4,6 +4,7 @@ import cc.univ.model.Country;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -29,7 +30,7 @@ public class CountryFactoryWebLiveTest {
     @Test
     public void testGotCountriesFromPageWorld() throws Exception {
         driver.get("http://univ.cc/world.php");
-        List<Country> countries = countryFactoryWeb.findList(driver);
+        List<Country> countries = countryFactoryWeb.findList(driver.findElement(By.tagName("html")));
 
         assertThat(countries).hasSize(205);
         assertThat(countries.get(2).getCode()).isEqualTo("dz");

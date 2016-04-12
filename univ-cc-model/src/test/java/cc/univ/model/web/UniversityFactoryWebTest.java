@@ -58,11 +58,13 @@ public class UniversityFactoryWebTest {
     }
 
     @Test
-    public void testGotUniversitiesFromPageChina1() throws Exception {
+    public void testGotUniversitiesFromPageChina1Web() throws Exception {
         URL resource = getClass().getResource("page_china_1.html");
         driver.get("file://" + resource.getPath());
         Country country = mock(Country.class);
-        List<University> universities = universityFactoryWeb.findList(country, driver);
+        List<University> universities = universityFactoryWeb.findList(
+                country,
+                driver.findElement(By.tagName("html")));
 
         assertThat(universities).hasSize(50);
         assertThat(universities.get(49).getName()).isEqualTo("China Agricultural University");

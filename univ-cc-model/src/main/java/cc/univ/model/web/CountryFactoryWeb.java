@@ -5,7 +5,6 @@ import cc.univ.model.auto.CountryAuto;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class CountryFactoryWeb {
     }
 
     @NotNull
-    public List<Country> findList(@NotNull WebDriver driver) {
-        return createList(driver.findElement(By.tagName(TAG_NAME_COUNTRY_LIST)));
+    public List<Country> findList(@NotNull WebElement webElement) {
+        return createList(webElement.findElement(By.tagName(TAG_NAME_COUNTRY_LIST)));
     }
 }
