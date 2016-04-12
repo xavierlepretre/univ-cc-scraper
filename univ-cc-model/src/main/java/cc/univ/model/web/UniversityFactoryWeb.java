@@ -22,8 +22,8 @@ public class UniversityFactoryWeb {
     @NotNull
     public University create(
             @NotNull Country country,
-            @NotNull WebElement liElement) {
-        WebElement anchorElement = liElement.findElement(By.tagName(TAG_NAME_ANCHOR));
+            @NotNull WebElement universityElement) {
+        WebElement anchorElement = universityElement.findElement(By.tagName(TAG_NAME_ANCHOR));
         return UniversityAuto.create(
                 country,
                 anchorElement.getAttribute(ATTRIBUTE_NAME),
@@ -33,10 +33,10 @@ public class UniversityFactoryWeb {
     @NotNull
     public List<University> createList(
             @NotNull Country country,
-            @NotNull WebElement olElement) {
+            @NotNull WebElement universityListElement) {
         List<University> created = new ArrayList<University>();
-        for (WebElement liElement : olElement.findElements(By.tagName(TAG_NAME_UNIVERSITY))) {
-            created.add(create(country, liElement));
+        for (WebElement universityElement : universityListElement.findElements(By.tagName(TAG_NAME_UNIVERSITY))) {
+            created.add(create(country, universityElement));
         }
         return created;
     }

@@ -10,4 +10,5 @@ public class Constants {
     public static final String TAG_NAME_ANCHOR = "a";
     public static final String TAG_NAME_ORDERED_LIST = "ol";
     public static final String TAG_NAME_LIST_ITEM = "li";
+    public static final String TAG_NAME_INPUT = "input";
 }
