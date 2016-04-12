@@ -1,7 +1,7 @@
 package cc.univ.page.web;
 
 import cc.univ.model.Country;
-import cc.univ.page.CountryPage;
+import cc.univ.page.CountryListPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CountryPageWebTest {
+public class CountryListPageWebTest {
     private WebDriver driver;
 
     @Before
@@ -37,10 +37,10 @@ public class CountryPageWebTest {
         Country country = mock(Country.class);
         when(country.getCode()).thenReturn("cn");
 
-        CountryPage countryPage = new CountryPageWeb(driver.findElement(By.tagName("html")));
+        CountryListPage countryListPage = new CountryListPageWeb(driver.findElement(By.tagName("html")));
 
-        countryPage.selectCountry(country);
-        countryPage.clickSearchButton();
+        countryListPage.selectCountry(country);
+        countryListPage.clickSearchButton();
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.urlContains("search"));

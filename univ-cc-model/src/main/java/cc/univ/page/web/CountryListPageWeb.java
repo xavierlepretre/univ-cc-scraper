@@ -1,14 +1,14 @@
 package cc.univ.page.web;
 
 import cc.univ.model.Country;
-import cc.univ.page.CountryPage;
+import cc.univ.page.CountryListPage;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByAll;
 
-public class CountryPageWeb implements CountryPage {
+public class CountryListPageWeb implements CountryListPage {
     private static final String TAG_NAME_COUNTRY_LIST = Constants.TAG_NAME_SELECT;
     private static final String TAG_NAME_COUNTRY = Constants.TAG_NAME_OPTION;
     private static final String ATTRIBUTE_CODE = Constants.ATTRIBUTE_VALUE;
@@ -18,7 +18,7 @@ public class CountryPageWeb implements CountryPage {
     @NotNull
     private final WebElement pageElement;
 
-    public CountryPageWeb(@NotNull WebElement pageElement) {
+    public CountryListPageWeb(@NotNull WebElement pageElement) {
         this.pageElement = pageElement;
     }
 
