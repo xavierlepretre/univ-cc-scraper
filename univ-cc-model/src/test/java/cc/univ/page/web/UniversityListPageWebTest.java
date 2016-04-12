@@ -1,12 +1,14 @@
 package cc.univ.page.web;
 
 import cc.univ.model.Country;
+import cc.univ.model.web.UniversityFactoryWeb;
 import cc.univ.page.UniversityListPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,8 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UniversityListPageWebTest {
     private WebDriver driver;
@@ -37,7 +38,10 @@ public class UniversityListPageWebTest {
         Country country = mock(Country.class);
         when(country.getCode()).thenReturn("cn");
 
-        UniversityListPage universityListPage = new UniversityListPageWeb(driver.findElement(By.tagName("html")));
+        UniversityListPage universityListPage = new UniversityListPageWeb(
+                driver.findElement(By.tagName("html")),
+                country,
+                mock(UniversityFactoryWeb.class));
 
         assertThat(universityListPage.hasNextButton()).isTrue();
         universityListPage.clickNextButton();
@@ -57,8 +61,26 @@ public class UniversityListPageWebTest {
         Country country = mock(Country.class);
         when(country.getCode()).thenReturn("ad");
 
-        UniversityListPage universityListPage = new UniversityListPageWeb(driver.findElement(By.tagName("html")));
+        UniversityListPage universityListPage = new UniversityListPageWeb(
+                driver.findElement(By.tagName("html")),
+                country,
+                mock(UniversityFactoryWeb.class));
 
         assertThat(universityListPage.hasNextButton()).isFalse();
+    }
+
+    @Test
+    public void testCollect_passesOn() throws Exception {
+        WebElement element = mock(WebElement.class);
+        Country country = mock(Country.class);
+        UniversityFactoryWeb factoryWeb = mock(UniversityFactoryWeb.class);
+        UniversityListPage universityListPage = new UniversityListPageWeb(
+                element,
+                country,
+                factoryWeb);
+
+        universityListPage.collectUniversities();
+
+        verify(factoryWeb).findList(country, element);
     }
 }
