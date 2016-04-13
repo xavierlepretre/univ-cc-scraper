@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 @AutoValue
 abstract public class UniversityAuto implements University {
-    public static UniversityAuto create(
+    @NotNull  public static UniversityAuto create(
             @NotNull Country country,
             @NotNull String name,
             @NotNull String url) {

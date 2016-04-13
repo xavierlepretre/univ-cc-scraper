@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 @AutoValue
 abstract public class CountryAuto implements Country {
-    public static CountryAuto create(@NotNull String code, @NotNull String name) {
+    @NotNull public static CountryAuto create(@NotNull String code, @NotNull String name) {
         return new AutoValue_CountryAuto(code, name);
     }
 }
