@@ -35,7 +35,7 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("ad");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
+                new UniversityListPageWebFactory(new UniversityFactoryWeb()));
 
         List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(1);
@@ -50,7 +50,7 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("dz");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
+                new UniversityListPageWebFactory(new UniversityFactoryWeb()));
 
         List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(31);
@@ -65,7 +65,7 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("ar");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
+                new UniversityListPageWebFactory(new UniversityFactoryWeb()));
 
         List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(88);

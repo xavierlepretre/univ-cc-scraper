@@ -40,7 +40,7 @@ public class UnivTraverserWebTest {
                 new CountryListPageWebFactory(
                         new CountryFactoryWeb()),
                 new UniversityListPageHandlerImplFactory(
-                        new UniversityListPageWebFactoryImpl(
+                        new UniversityListPageWebFactory(
                                 new UniversityFactoryWeb())));
         ScrapedInfo scrapedInfo = traverser.scrape(driver);
 

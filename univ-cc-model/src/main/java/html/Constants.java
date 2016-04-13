@@ -1,6 +1,8 @@
 package html;
 
 public class Constants {
+    public static final String BASE_URL = "http://univ.cc/world.php";
+
     public static final String ATTRIBUTE_VALUE = "value";
     public static final String ATTRIBUTE_INNER_HTML = "innerHTML";
     public static final String ATTRIBUTE_HREF = "href";

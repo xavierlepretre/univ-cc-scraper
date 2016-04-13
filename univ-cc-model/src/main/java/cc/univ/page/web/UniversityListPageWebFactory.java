@@ -3,17 +3,14 @@ package cc.univ.page.web;
 import cc.univ.model.Country;
 import cc.univ.model.web.UniversityFactoryWeb;
 import cc.univ.page.UniversityListPageFactory;
-import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 
-public class UniversityListPageWebFactoryImpl implements UniversityListPageFactory {
-    private static final String TAG_NAME_ROOT = Constants.TAG_NAME_HTML;
-
+public class UniversityListPageWebFactory implements UniversityListPageFactory {
     @NotNull
     private final UniversityFactoryWeb universityFactoryWeb;
 
-    public UniversityListPageWebFactoryImpl(@NotNull UniversityFactoryWeb universityFactoryWeb) {
+    public UniversityListPageWebFactory(@NotNull UniversityFactoryWeb universityFactoryWeb) {
         this.universityFactoryWeb = universityFactoryWeb;
     }
 
