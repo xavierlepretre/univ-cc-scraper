@@ -6,6 +6,7 @@ import cc.univ.model.auto.UniversityAuto;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -43,9 +44,9 @@ public class UniversityFactoryWeb {
     @NotNull
     public List<University> findList(
             @NotNull Country country,
-            @NotNull WebElement webElement) {
+            @NotNull WebDriver driver) {
         return createList(
                 country,
-                webElement.findElement(By.tagName(TAG_NAME_UNIVERSITY_LIST)));
+                driver.findElement(By.tagName(TAG_NAME_UNIVERSITY_LIST)));
     }
 }

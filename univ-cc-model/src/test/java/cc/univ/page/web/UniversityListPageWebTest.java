@@ -6,7 +6,6 @@ import cc.univ.page.UniversityListPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -39,12 +38,10 @@ public class UniversityListPageWebTest {
         when(country.getCode()).thenReturn("cn");
 
         UniversityListPage universityListPage = new UniversityListPageWeb(
-                driver.findElement(By.tagName("html")),
-                country,
                 mock(UniversityFactoryWeb.class));
 
-        assertThat(universityListPage.hasNextButton()).isTrue();
-        universityListPage.clickNextButton();
+        assertThat(universityListPage.hasNextButton(driver)).isTrue();
+        universityListPage.clickNextButton(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.urlContains("51"));
@@ -62,11 +59,9 @@ public class UniversityListPageWebTest {
         when(country.getCode()).thenReturn("ad");
 
         UniversityListPage universityListPage = new UniversityListPageWeb(
-                driver.findElement(By.tagName("html")),
-                country,
                 mock(UniversityFactoryWeb.class));
 
-        assertThat(universityListPage.hasNextButton()).isFalse();
+        assertThat(universityListPage.hasNextButton(driver)).isFalse();
     }
 
     @Test
@@ -75,12 +70,10 @@ public class UniversityListPageWebTest {
         Country country = mock(Country.class);
         UniversityFactoryWeb factoryWeb = mock(UniversityFactoryWeb.class);
         UniversityListPage universityListPage = new UniversityListPageWeb(
-                element,
-                country,
                 factoryWeb);
 
-        universityListPage.collectUniversities();
+        universityListPage.collectUniversities(driver, country);
 
-        verify(factoryWeb).findList(country, element);
+        verify(factoryWeb).findList(country, driver);
     }
 }

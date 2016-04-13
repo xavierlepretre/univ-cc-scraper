@@ -6,9 +6,7 @@ import cc.univ.page.CountryListPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,9 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CountryListPageWebTest {
     private WebDriver driver;
@@ -41,11 +37,10 @@ public class CountryListPageWebTest {
         when(country.getCode()).thenReturn("cn");
 
         CountryListPage countryListPage = new CountryListPageWeb(
-                driver.findElement(By.tagName("html")),
                 mock(CountryFactoryWeb.class));
 
-        countryListPage.selectCountry(country);
-        countryListPage.clickSearchButton();
+        countryListPage.selectCountry(driver, country);
+        countryListPage.clickSearchButton(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.urlContains("search"));
@@ -56,14 +51,12 @@ public class CountryListPageWebTest {
 
     @Test
     public void testCollect_passesOn() throws Exception {
-        WebElement element = mock(WebElement.class);
         CountryFactoryWeb factoryWeb = mock(CountryFactoryWeb.class);
         CountryListPage countryListPage = new CountryListPageWeb(
-                element,
                 factoryWeb);
 
-        countryListPage.collectCountries();
+        countryListPage.collectCountries(driver);
 
-        verify(factoryWeb).findList(element);
+        verify(factoryWeb).findList(driver);
     }
 }

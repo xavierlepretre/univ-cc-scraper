@@ -62,9 +62,7 @@ public class UniversityFactoryWebTest {
         URL resource = getClass().getResource("page_china_1.html");
         driver.get("file://" + resource.getPath());
         Country country = mock(Country.class);
-        List<University> universities = universityFactoryWeb.findList(
-                country,
-                driver.findElement(By.tagName("html")));
+        List<University> universities = universityFactoryWeb.findList(country, driver);
 
         assertThat(universities).hasSize(50);
         assertThat(universities.get(49).getName()).isEqualTo("China Agricultural University");

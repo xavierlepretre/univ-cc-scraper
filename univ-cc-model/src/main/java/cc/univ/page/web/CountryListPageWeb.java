@@ -6,6 +6,7 @@ import cc.univ.page.CountryListPage;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByAll;
 
@@ -19,34 +20,31 @@ public class CountryListPageWeb implements CountryListPage {
     private static final String CLASS_NAME_SEARCH_BUTTON = "submit";
 
     @NotNull
-    private final WebElement pageElement;
-    @NotNull
     private final CountryFactoryWeb countryFactoryWeb;
 
     public CountryListPageWeb(
-            @NotNull WebElement pageElement,
             @NotNull CountryFactoryWeb countryFactoryWeb) {
-        this.pageElement = pageElement;
         this.countryFactoryWeb = countryFactoryWeb;
     }
 
-    public void selectCountry(@NotNull Country country) {
-        WebElement countryListElement = pageElement.findElement(By.tagName(TAG_NAME_COUNTRY_LIST));
+    public void selectCountry(
+            @NotNull WebDriver driver, @NotNull Country country) {
+        WebElement countryListElement = driver.findElement(By.tagName(TAG_NAME_COUNTRY_LIST));
         WebElement countryElement = countryListElement.findElement(new ByAll(
                 new By.ByCssSelector("[" + ATTRIBUTE_CODE + "=\"" + country.getCode() + "\"]"),
                 By.tagName(TAG_NAME_COUNTRY)));
         countryElement.click();
     }
 
-    public void clickSearchButton() {
-        pageElement.findElement(new ByAll(
+    public void clickSearchButton(@NotNull WebDriver driver) {
+        driver.findElement(new ByAll(
                 By.className(CLASS_NAME_SEARCH_BUTTON),
                 By.tagName(TAG_NAME_SEARCH_BUTTON)))
                 .click();
     }
 
     @NotNull
-    public List<Country> collectCountries() {
-        return countryFactoryWeb.findList(pageElement);
+    public List<Country> collectCountries(@NotNull WebDriver driver) {
+        return countryFactoryWeb.findList(driver);
     }
 }

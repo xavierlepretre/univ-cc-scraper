@@ -1,15 +1,12 @@
 package cc.univ.page;
 
 import cc.univ.model.Country;
-import cc.univ.model.University;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 
-import java.util.List;
-
-public interface UniversityListPageHandler {
+public interface UniversityListPageFactory {
     @NotNull
-    List<University> traverseAndCollect(
-            @NotNull WebDriver driver,
+    UniversityListPage create(
+            @NotNull WebDriver webDriver,
             @NotNull Country country);
 }

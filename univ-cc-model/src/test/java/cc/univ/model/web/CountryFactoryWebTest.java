@@ -15,7 +15,7 @@ import java.util.List;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class CountryFactoryWebTest {
-    private  WebDriver driver;
+    private WebDriver driver;
     private CountryFactoryWeb countryFactoryWeb;
 
     @Before
@@ -64,7 +64,7 @@ public class CountryFactoryWebTest {
     public void testGotCountriesFromPageWorld() throws Exception {
         URL resource = getClass().getResource("page_world.html");
         driver.get("file://" + resource.getPath());
-        List<Country> countries = countryFactoryWeb.findList(driver.findElement(By.tagName("html")));
+        List<Country> countries = countryFactoryWeb.findList(driver);
 
         assertThat(countries).hasSize(205);
         assertThat(countries.get(2).getCode()).isEqualTo("dz");

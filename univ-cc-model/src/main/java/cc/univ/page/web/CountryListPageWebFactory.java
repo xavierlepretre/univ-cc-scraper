@@ -4,7 +4,6 @@ import cc.univ.model.web.CountryFactoryWeb;
 import cc.univ.page.CountryListPageFactory;
 import html.Constants;
 import org.jetbrains.annotations.NotNull;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CountryListPageWebFactory implements CountryListPageFactory {
@@ -20,7 +19,6 @@ public class CountryListPageWebFactory implements CountryListPageFactory {
     @Override
     public CountryListPageWeb create(@NotNull WebDriver webDriver) {
         return new CountryListPageWeb(
-                webDriver.findElement(By.tagName(TAG_NAME_ROOT)),
                 countryFactoryWeb);
     }
 }

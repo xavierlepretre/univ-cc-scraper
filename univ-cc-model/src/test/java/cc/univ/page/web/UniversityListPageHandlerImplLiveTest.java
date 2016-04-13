@@ -35,12 +35,9 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("ad");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                driver,
-                country,
-                new UniversityFactoryWeb(),
-                new UniversityListPageWebFactoryImpl());
+                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
 
-        List<University> universities = pageHandler.traverseAndCollect();
+        List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(1);
         assertThat(universities.get(0).getName()).isEqualTo("University of Andorra");
         assertThat(universities.get(0).getUrl()).isEqualTo("http://www.uda.ad/");
@@ -53,12 +50,9 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("dz");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                driver,
-                country,
-                new UniversityFactoryWeb(),
-                new UniversityListPageWebFactoryImpl());
+                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
 
-        List<University> universities = pageHandler.traverseAndCollect();
+        List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(31);
         assertThat(universities.get(0).getName()).isEqualTo("Centre Universitaire de Jijel");
         assertThat(universities.get(0).getUrl()).isEqualTo("http://www.univ-jijel.dz/");
@@ -71,12 +65,9 @@ public class UniversityListPageHandlerImplLiveTest {
         when(country.getCode()).thenReturn("ar");
 
         UniversityListPageHandlerImpl pageHandler = new UniversityListPageHandlerImpl(
-                driver,
-                country,
-                new UniversityFactoryWeb(),
-                new UniversityListPageWebFactoryImpl());
+                new UniversityListPageWebFactoryImpl(new UniversityFactoryWeb()));
 
-        List<University> universities = pageHandler.traverseAndCollect();
+        List<University> universities = pageHandler.traverseAndCollect(driver, country);
         assertThat(universities).hasSize(88);
         assertThat(universities.get(0).getName()).isEqualTo("Instituto de Enseñanza Superior del Ejército");
         assertThat(universities.get(0).getUrl()).isEqualTo("http://www.iese.edu.ar/");

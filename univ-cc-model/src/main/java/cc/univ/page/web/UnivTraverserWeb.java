@@ -29,16 +29,16 @@ public class UnivTraverserWeb implements UnivTraverser {
     public ScrapedInfo scrape(@NotNull WebDriver driver) {
         String startUrl = driver.getCurrentUrl();
         CountryListPage countryListPage = countryListPageFactory.create(driver);
-        List<Country> countries = countryListPage.collectCountries();
+        List<Country> countries = countryListPage.collectCountries(driver);
         List<University> universities = new ArrayList<>();
 
         UniversityListPageHandler universityListPageHandler;
 
         for (Country country : countries) {
-            countryListPage.selectCountry(country);
-            countryListPage.clickSearchButton();
+            countryListPage.selectCountry(driver, country);
+            countryListPage.clickSearchButton(driver);
             universityListPageHandler = universityListPageHandlerFactory.create(driver, country);
-            universities.addAll(universityListPageHandler.traverseAndCollect());
+            universities.addAll(universityListPageHandler.traverseAndCollect(driver, country));
             driver.get(startUrl);
         }
 

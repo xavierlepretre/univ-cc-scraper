@@ -37,8 +37,11 @@ public class UnivTraverserWebTest {
         when(country.getCode()).thenReturn("af");
 
         UnivTraverserWeb traverser = new UnivTraverserWeb(
-                new CountryListPageWebFactory(new CountryFactoryWeb()),
-                new UniversityListPageHandlerImplFactory(new UniversityFactoryWeb(), new UniversityListPageWebFactoryImpl()));
+                new CountryListPageWebFactory(
+                        new CountryFactoryWeb()),
+                new UniversityListPageHandlerImplFactory(
+                        new UniversityListPageWebFactoryImpl(
+                                new UniversityFactoryWeb())));
         ScrapedInfo scrapedInfo = traverser.scrape(driver);
 
         assertThat(scrapedInfo.getCountries()).hasSize(1);
